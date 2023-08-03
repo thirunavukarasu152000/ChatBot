@@ -41,11 +41,11 @@ _template = PromptTemplate(
 def question():
     query = request.form["query"]
     conversation_id = request.form["conversation_id"]
-    if conversation_id in [None, "", '0']:
+    if conversation_id in [None,  '0']:
         conversation_id = uuid4().hex
     memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
     question_answer = ConversationalRetrievalChain.from_llm(MyOpenAI, retriever, memory=memory, 
                                                combine_docs_chain_kwargs={'prompt': _template})
     result = question_answer({"question": query})
-    return str({"ok" : True, "result":result, "conversation_id":conversation_id})
-
+    del result["chat_history"]
+    return {"ok" : True, "result":result, "conversation_id":conversation_id}
