@@ -10,7 +10,6 @@ In instances where Assistant is unable to provide an answer, it responds with 'T
 
 {context}
 
-{chat_history}
-
+ 
 Human: {question}
 Assistant:"""

@@ -1,18 +1,14 @@
 from flask import Blueprint, request
 from uuid import uuid4
 import os
-
 from langchain.llms import OpenAI
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 from langchain import PromptTemplate
 from langchain.vectorstores import Weaviate
 from langchain.document_loaders import PyPDFium2Loader
-from langchain.llms import OpenAI
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.text_splitter import CharacterTextSplitter
-
-
 from app.prompt import TEMPLATE
 
 chat = Blueprint("Chat-API", __name__, url_prefix="/api")
